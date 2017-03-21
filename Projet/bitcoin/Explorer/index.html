@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="../../styles/styleexplorer.css" />
+	 <link rel="stylesheet" href="../../styles/navbar.css" />
+	 <link rel="stylesheet" href="../../styles/bootstrap.css" />
+	   <title> Explorer </title>
+	</head>
+		
+	<body>
+	 <div class="image">
+	  <image src = "../../images/finance.JPG" position ="top" width="250" height="74"/> 
+	</div>
+	<div class="liste">
+	 <ul>
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../index.html">Bitcoin</a></li>
+	  <li><a href="bitcoin/explorer/index.html">Explorer</a></li>
+     </ul>
+    </div>
+	
+	<form>
+  <div style="margin-left:30px;" class="form-group">
+    <label for="InputAddress"> Bitcoin address</label>
+	<br>
+    <input style ="width:500px;" type="Adress" class="form-control" id="InputAddress" placeholder="Adress Bitcoin">
+	<br>
+	 <button type="Recherche" onclick="requeteChamp()" class="btn btn-default"> Recherche</button>
+  </div>
+	</form>
+    <div style ="width:800px;" class="row">
+            <div style ="margin-left:40px;" class="col-lg-12 col-xs-6">
+                <pre>
+                    <code  id="champAddress" class="json kljs"></code>
+                </pre>
+            </div>
+        </div>
+		
+		<br>
+<form>
+  <div style="margin-left:30px;" class="form-group">
+    <label for="InputHashTransaction"> Hash de transaction</label>
+	<br>
+    <input style ="width:500px;" type="Hash de transaction" class="form-control" id="InputHashTransaction" placeholder="Hash de transaction">
+	<br>
+	 <button type="Recherche" onclick="requeteChamp()" class="btn btn-default"> Recherche</button>
+  </div>
+	</form>
+    <div style ="width:800px;" class="row">
+            <div style ="margin-left:40px;" class="col-lg-12 col-xs-6">
+                <pre>
+                    <code  id="champHashTransaction" class="json kljs"></code>
+                </pre>
+            </div>
+        </div>
+				<br>
+<form>
+  <div style="margin-left:30px;" class="form-group">
+    <label for="InputHashBloc"> Hash de Bloc </label>
+	<br>
+    <input style ="width:500px;" type="Hash de bloc" class="form-control" id="InputHashBlock" placeholder="Hash de Bloc">
+	<br>
+	 <button type="Recherche" onclick="requeteChamp()" class="btn btn-default"> Recherche</button>
+  </div>
+	</form>
+    <div style ="width:800px;" class="row">
+            <div style ="margin-left:40px;" class="col-lg-12 col-xs-6">
+                <pre>
+                    <code  id="champHashBloc" class="json kljs"></code>
+                </pre>
+            </div>
+        </div>
+		
+				<br>
+<form>
+  <div style="margin-left:30px;" class="form-group">
+    <label for="InputIndex"> Index de Bloc</label>
+	<br>
+    <input style ="width:500px;" type="Index de Bloc" class="form-control" id="InputIndex" placeholder="Index de Bloc">
+	<br>
+	 <button type="Recherche" onclick="requeteChamp()" class="btn btn-default"> Recherche</button>
+  </div>
+	</form>
+    <div style ="width:800px;" class="row">
+            <div style ="margin-left:40px;" class="col-lg-12 col-xs-6">
+                <pre>
+                    <code  id="champIndex" class="json kljs"></code>
+                </pre>
+            </div>
+        </div>
+ </body>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../../js/script.js" charset="utf-8"></script>
+<script>
+    function requeteChamp() {
+        var address = document.getElementById("inputAddress").value;
+        var hashTransac = document.getElementById("inputHashTransaction").value;
+        var hashBlock = document.getElementById("inputHashBloc").value;
+        var index = document.getElementById("inputIndex").value;
+        if (address != "") {
+
+            requeteAPI("https://bitcoin.mubiz.com/address/" + Address + "/", "champAddress");
+        }
+
+        if (hashTransac != "") {
+
+            requeteAPI("https://bitcoin.mubiz.com/transaction/" + HashTransactionashTransaction + "/", "champHashTransaction");
+        }
+
+        if (hashBlock != "") {
+
+            requeteAPI("https://bitcoin.mubiz.com/block_hash/" + HashBloc + "/", "champHashBloc");
+        }
+
+        if (index != "") {
+
+            requeteAPI("https://bitcoin.mubiz.com/block_index/" + Index + "/", "champIndex");
+        }
+    }
+</script>
+ </html>

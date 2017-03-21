@@ -1,0 +1,31 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+.image{
+	float: left;
+}
+
+.liste li {
+    float: left;
+}
+
+.liste li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 17px 19px;
+    text-decoration: none;
+	font-size : 2em ;
+}
+
+.liste li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.lise .active {
+    background-color: #4CAF50;
+}
