@@ -6,6 +6,6 @@ xmlhttp.onreadystatechange = function() {
         document.getElementById("demo").innerHTML = jsonPretty;
     }
 };
-xmlhttp.open("GET", "http://bitcoin.mubiz.com/info", true);
+xmlhttp.open("GET", "https://bitcoin.mubiz.com/info", true);
 xmlhttp.send();
 					

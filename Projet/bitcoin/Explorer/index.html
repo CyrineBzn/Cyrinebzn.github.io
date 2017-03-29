@@ -24,11 +24,10 @@
   <div style="margin-left:30px;" class="form-group">
     <label for="InputAddress"> Bitcoin address</label>
 	<br>
-    <input style ="width:500px;" type="Adress" class="form-control" id="InputAddress" placeholder="Adress Bitcoin">
+    <input style ="width:500px;" type="Adress" class="form-control" id="inputAddress" placeholder="Adress Bitcoin">
 	<br>
-	 <button type="Recherche" onclick="requeteChamp()" class="btn btn-default"> Recherche</button>
+	 <button type="button" onclick="requeteChamp()" class="btn btn-default"> Recherche</button>
   </div>
-	</form>
     <div style ="width:800px;" class="row">
             <div style ="margin-left:40px;" class="col-lg-12 col-xs-6">
                 <pre>
@@ -36,21 +35,21 @@
                 </pre>
             </div>
         </div>
-		
+	</form>	
 		<br>
 <form>
   <div style="margin-left:30px;" class="form-group">
     <label for="InputHashTransaction"> Hash de transaction</label>
 	<br>
-    <input style ="width:500px;" type="Hash de transaction" class="form-control" id="InputHashTransaction" placeholder="Hash de transaction">
+    <input style ="width:500px;" type="Hash de transaction" class="form-control" id="inputHashTransac" placeholder="Hash de transaction">
 	<br>
-	 <button type="Recherche" onclick="requeteChamp()" class="btn btn-default"> Recherche</button>
+	 <button type="button" onclick="requeteChamp()" class="btn btn-default"> Recherche</button>
   </div>
-	</form>
+  </form>
     <div style ="width:800px;" class="row">
             <div style ="margin-left:40px;" class="col-lg-12 col-xs-6">
                 <pre>
-                    <code  id="champHashTransaction" class="json kljs"></code>
+                    <code  id="champHashTransac" class="json kljs"></code>
                 </pre>
             </div>
         </div>
@@ -59,15 +58,15 @@
   <div style="margin-left:30px;" class="form-group">
     <label for="InputHashBloc"> Hash de Bloc </label>
 	<br>
-    <input style ="width:500px;" type="Hash de bloc" class="form-control" id="InputHashBlock" placeholder="Hash de Bloc">
+    <input style ="width:500px;" type="Hash de bloc" class="form-control" id="inputHashBlock" placeholder="Hash de Bloc">
 	<br>
-	 <button type="Recherche" onclick="requeteChamp()" class="btn btn-default"> Recherche</button>
+	 <button type="button" onclick="requeteChamp()" class="btn btn-default"> Recherche</button>
   </div>
 	</form>
     <div style ="width:800px;" class="row">
             <div style ="margin-left:40px;" class="col-lg-12 col-xs-6">
                 <pre>
-                    <code  id="champHashBloc" class="json kljs"></code>
+                    <code  id="champHashBlock" class="json kljs"></code>
                 </pre>
             </div>
         </div>
@@ -77,9 +76,9 @@
   <div style="margin-left:30px;" class="form-group">
     <label for="InputIndex"> Index de Bloc</label>
 	<br>
-    <input style ="width:500px;" type="Index de Bloc" class="form-control" id="InputIndex" placeholder="Index de Bloc">
+    <input style ="width:500px;" type="Index de Bloc" class="form-control" id="inputIndex" placeholder="Index de Bloc">
 	<br>
-	 <button type="Recherche" onclick="requeteChamp()" class="btn btn-default"> Recherche</button>
+	 <button type="button" onclick="requeteChamp()" class="btn btn-default"> Recherche</button>
   </div>
 	</form>
     <div style ="width:800px;" class="row">
@@ -94,29 +93,40 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="../../js/script.js" charset="utf-8"></script>
 <script>
-    function requeteChamp() {
+     function requeteChamp() {
         var address = document.getElementById("inputAddress").value;
-        var hashTransac = document.getElementById("inputHashTransaction").value;
-        var hashBlock = document.getElementById("inputHashBloc").value;
+        var hashTransac = document.getElementById("inputHashTransac").value;
+        var hashBlock = document.getElementById("inputHashBlock").value;
         var index = document.getElementById("inputIndex").value;
         if (address != "") {
-
-            requeteAPI("https://bitcoin.mubiz.com/address/" + Address + "/", "champAddress");
+            if ((/^[0-9a-zA-Z]{34}$/.test(address))) {
+                requeteAPI("https://bitcoin.mubiz.com/address/" + address + "/", "champAddress");
+            } else {
+                document.getElementById("champAddress").innerHTML = "Address non valide !";
+            }
         }
-
         if (hashTransac != "") {
-
-            requeteAPI("https://bitcoin.mubiz.com/transaction/" + HashTransactionashTransaction + "/", "champHashTransaction");
+            if ((/^[0-9a-zA-Z]{64}$/.test(hashTransac))) {
+                requeteAPI("https://bitcoin.mubiz.com/transaction/" + hashTransac + "/", "champHashTransac");
+            } else {
+                document.getElementById("champHashTransac").innerHTML = "Hash de transaction non valide !";
+            }
         }
 
         if (hashBlock != "") {
-
-            requeteAPI("https://bitcoin.mubiz.com/block_hash/" + HashBloc + "/", "champHashBloc");
+            if ((/^[0-9a-zA-Z]{64}$/.test(hashBlock))) {
+                requeteAPI("https://bitcoin.mubiz.com/block_hash/" + hashBlock + "/", "champHashBlock");
+            } else {
+                document.getElementById("champHashBlock").innerHTML = "Hash de bloc non valide !";
+            }
         }
 
         if (index != "") {
-
-            requeteAPI("https://bitcoin.mubiz.com/block_index/" + Index + "/", "champIndex");
+            if (/^[0-9]{5,}$/.test(index)) {
+                requeteAPI("https://bitcoin.mubiz.com/block_index/" + index + "/", "champIndex");
+            } else {
+                document.getElementById("champIndex").innerHTML = "index non valide !";
+            }
         }
     }
 </script>
